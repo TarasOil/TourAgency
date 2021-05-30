@@ -23,6 +23,6 @@ public class City {
     @JoinColumn(name = "country_id", nullable = false)
     private Country country;
 
-    @OneToMany(mappedBy = "city")
+    @OneToMany(mappedBy = "departureCity")
     private List<Tour> tours;
 }

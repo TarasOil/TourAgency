@@ -4,13 +4,15 @@ import com.oliinyk.practice.touragencyserver.entity.Country;
 import com.oliinyk.practice.touragencyserver.repository.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("country")
+@RequestMapping(path = "country", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 public class CountryController {
 
     private final CountryRepository countryRepository;
@@ -33,9 +35,9 @@ public class CountryController {
 
     @GetMapping("/{countryId}")
     public ResponseEntity<Country> getCountryById(@PathVariable("countryId") int id) {
-        Country country = countryRepository.findById(id).get();
-        if(country != null) {
-            return new ResponseEntity<Country>(country, HttpStatus.OK);
+        Optional<Country> country = countryRepository.findById(id);
+        if(country.isPresent()) {
+            return new ResponseEntity<Country>(country.get(), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
@@ -43,9 +45,9 @@ public class CountryController {
 
     @PutMapping("/{countryId}")
     public ResponseEntity<Void> editCountry(@PathVariable("countryId") int id, @RequestBody Country countryIn) {
-        Country country = countryRepository.findById(id).get();
-        if (country != null) {
-            countryIn.setId(country.getId());
+        Optional<Country> country = countryRepository.findById(id);
+        if (country.isPresent()) {
+            countryIn.setId(country.get().getId());
             countryRepository.save(countryIn);
             return new ResponseEntity<>(HttpStatus.OK);
         }
