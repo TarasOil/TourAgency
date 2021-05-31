@@ -20,4 +20,9 @@ public class FeedingType {
 
     @Column(length = 10, unique = true, nullable = false)
     private String abbr;
+
+    public FeedingType(String name, String abbr) {
+        this.name = name;
+        this.abbr = abbr;
+    }
 }

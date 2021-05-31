@@ -28,4 +28,11 @@ public class Room {
 
     @Column(name = "price_per_child", scale = 7, precision = 2, nullable = false)
     private Double pricePerChild;
+
+    public Room(Hotel hotel, RoomType roomType, Double pricePerAdult, Double pricePerChild) {
+        this.hotel = hotel;
+        this.roomType = roomType;
+        this.pricePerAdult = pricePerAdult;
+        this.pricePerChild = pricePerChild;
+    }
 }

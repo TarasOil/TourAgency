@@ -2,9 +2,7 @@ package com.oliinyk.practice.touragencyserver.controller;
 
 import com.oliinyk.practice.touragencyserver.entity.Country;
 import com.oliinyk.practice.touragencyserver.repository.CountryRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "country", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping("country")
 public class CountryController {
 
     private final CountryRepository countryRepository;
@@ -21,26 +19,24 @@ public class CountryController {
         this.countryRepository = countryRepository;
     }
 
-
     @PostMapping
     public ResponseEntity<Void> addCountry(@RequestBody Country country) {
         countryRepository.save(country);
-        return new ResponseEntity<Void>(HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @GetMapping
     public ResponseEntity<List<Country>> getCountries() {
-        return new ResponseEntity<List<Country>>(countryRepository.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(countryRepository.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{countryId}")
     public ResponseEntity<Country> getCountryById(@PathVariable("countryId") int id) {
         Optional<Country> country = countryRepository.findById(id);
         if(country.isPresent()) {
-            return new ResponseEntity<Country>(country.get(), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(country.get(), HttpStatus.OK);
         }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
     @PutMapping("/{countryId}")
@@ -57,6 +53,6 @@ public class CountryController {
     @DeleteMapping("/{countryId}")
     public ResponseEntity<Void> deleteCountry(@PathVariable("countryId") int id) {
         countryRepository.deleteById(id);
-        return new ResponseEntity<Void>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

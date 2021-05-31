@@ -21,4 +21,9 @@ public class Image {
 
     @Column(name = "image_url", unique = true, nullable = false)
     private String imageUrl;
+
+    public Image(Hotel hotel, String imageUrl) {
+        this.hotel = hotel;
+        this.imageUrl = imageUrl;
+    }
 }

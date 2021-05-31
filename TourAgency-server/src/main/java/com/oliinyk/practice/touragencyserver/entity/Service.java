@@ -25,4 +25,10 @@ public class Service {
     @ManyToOne
     @JoinColumn(name = "service_type_id", nullable = false)
     private ServiceType serviceType;
+
+    public Service(String name, Hotel hotel, ServiceType serviceType) {
+        this.name = name;
+        this.hotel = hotel;
+        this.serviceType = serviceType;
+    }
 }

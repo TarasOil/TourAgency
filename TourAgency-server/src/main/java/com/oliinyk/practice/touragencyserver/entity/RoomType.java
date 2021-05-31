@@ -17,4 +17,8 @@ public class RoomType {
 
     @Column(length = 30, unique = true, nullable = false)
     private String name;
+
+    public RoomType(String name) {
+        this.name = name;
+    }
 }

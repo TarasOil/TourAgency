@@ -37,4 +37,13 @@ public class Tour {
     @ManyToOne
     @JoinColumn(name = "feeding_type_id", nullable = false)
     private FeedingType feedingType;
+
+    public Tour(Hotel hotel, int nights, City departureCity, Date departureDate, RoomType roomType, FeedingType feedingType) {
+        this.hotel = hotel;
+        this.nights = nights;
+        this.departureCity = departureCity;
+        this.departureDate = departureDate;
+        this.roomType = roomType;
+        this.feedingType = feedingType;
+    }
 }

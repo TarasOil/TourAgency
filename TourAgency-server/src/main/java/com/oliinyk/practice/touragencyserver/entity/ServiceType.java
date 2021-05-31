@@ -17,4 +17,8 @@ public class ServiceType {
 
     @Column(length = 30, unique = true, nullable = false)
     private String name;
+
+    public ServiceType(String name) {
+        this.name = name;
+    }
 }

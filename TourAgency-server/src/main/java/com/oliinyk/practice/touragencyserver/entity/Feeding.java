@@ -28,4 +28,11 @@ public class Feeding {
 
     @Column(name = "price_per_child", scale = 7, precision = 2, nullable = false)
     private Double pricePerChild;
+
+    public Feeding(Hotel hotel, FeedingType feedingType, Double pricePerAdult, Double pricePerChild) {
+        this.hotel = hotel;
+        this.feedingType = feedingType;
+        this.pricePerAdult = pricePerAdult;
+        this.pricePerChild = pricePerChild;
+    }
 }

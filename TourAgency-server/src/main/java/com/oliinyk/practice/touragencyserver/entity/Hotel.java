@@ -1,5 +1,6 @@
 package com.oliinyk.practice.touragencyserver.entity;
 
+import io.swagger.v3.oas.annotations.Hidden;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,12 +29,21 @@ public class Hotel {
     @JoinColumn(name = "city_id", nullable = false)
     private City city;
 
+    @Hidden
     @OneToMany(mappedBy = "hotel")
     private List<Tour> tours;
 
+    @Hidden
     @OneToMany(mappedBy = "hotel")
     private List<Room> rooms;
 
+    @Hidden
     @OneToMany(mappedBy = "hotel")
     private List<Image> images;
+
+    public Hotel(String name, int starCategory, City city) {
+        this.name = name;
+        this.starCategory = starCategory;
+        this.city = city;
+    }
 }
