@@ -6,6 +6,7 @@ import com.oliinyk.practice.touragencyserver.repository.HotelRepository;
 import com.oliinyk.practice.touragencyserver.repository.ImageRepository;
 import com.oliinyk.practice.touragencyserver.service.CloudinaryService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -33,7 +34,7 @@ public class HotelController {
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
 
-    @PostMapping("/{hotelId}/photo")
+    @PostMapping(value = "/{hotelId}/photo", consumes = "multipart/form-data")
     public ResponseEntity<Void> addPhoto(@PathVariable("hotelId") int id, @RequestPart MultipartFile[] images) {
         Optional<Hotel> hotel = hotelRepository.findById(id);
         if(hotel.isPresent()) {
@@ -47,7 +48,7 @@ public class HotelController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Hotel>> getCountries() {
+    public ResponseEntity<List<Hotel>> getHotels() {
         return new ResponseEntity<>(hotelRepository.findAll(), HttpStatus.OK);
     }
 

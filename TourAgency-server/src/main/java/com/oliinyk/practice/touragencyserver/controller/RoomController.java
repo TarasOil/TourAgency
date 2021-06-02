@@ -26,7 +26,7 @@ public class RoomController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Room>> getCountries() {
+    public ResponseEntity<List<Room>> getRooms() {
         return new ResponseEntity<>(roomRepository.findAll(), HttpStatus.OK);
     }
 

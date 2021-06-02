@@ -1,12 +1,14 @@
 package com.oliinyk.practice.touragencyserver.entity;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "Feeding")
 public class Feeding {

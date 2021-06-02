@@ -26,7 +26,7 @@ public class FeedingTypeController {
     }
 
     @GetMapping
-    public ResponseEntity<List<FeedingType>> getCountries() {
+    public ResponseEntity<List<FeedingType>> getFeedingTypes() {
         return new ResponseEntity<>(feedingTypeRepository.findAll(), HttpStatus.OK);
     }
 

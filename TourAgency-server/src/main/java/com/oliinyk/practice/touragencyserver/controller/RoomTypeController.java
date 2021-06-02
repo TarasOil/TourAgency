@@ -27,7 +27,7 @@ public class RoomTypeController {
     }
 
     @GetMapping
-    public ResponseEntity<List<RoomType>> getCountries() {
+    public ResponseEntity<List<RoomType>> getRoomTypes() {
         return new ResponseEntity<>(roomTypeRepository.findAll(), HttpStatus.OK);
     }
 

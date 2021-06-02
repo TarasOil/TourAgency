@@ -26,7 +26,7 @@ public class ServiceController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Service>> getCountries() {
+    public ResponseEntity<List<Service>> getServices() {
         return new ResponseEntity<>(serviceRepository.findAll(), HttpStatus.OK);
     }
 

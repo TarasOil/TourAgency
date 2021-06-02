@@ -1,0 +1,85 @@
+#sunset {
+    background-image: url(../img/sunset.jpg);
+    background-size: cover;
+}
+
+#sunset-text {
+    font-family: Oleo, Helvetica, sans-serif;
+    font-size: 5rem;
+    color: black;
+    /* -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black; */
+    position: relative; 
+    top: 45%;
+    left: 37%;
+}
+
+.pros {
+    padding: 3% 0% 3% 5%;
+}
+
+.pros-info {
+    padding-left: 10%;
+}
+
+.pros-icon-wrapper {
+    padding-top: 3%;
+}
+
+.pros-icon {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    color: white;
+    font-size: 3rem;
+    border: 2px solid white;
+    border-radius: 50px;
+}
+
+.pros-title, .pros-content {
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+
+.pros-title {
+    font-size: 2rem;
+}
+
+.pros-content {
+    font-size: 1rem;
+}
+
+.motivational {
+    font-size: 2rem;
+    font-weight: bold;
+    color: rgb(231, 139, 19);
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.search {
+    height: 10rem;
+    background-image: linear-gradient(45deg, #009fd0, #0085ae);
+    margin-bottom: 6rem;
+}
+
+.beach-wrapper {
+    transform: skewY(-5deg);
+}
+
+.beach {
+    height: 40vh;
+    background-size: cover;
+}
+
+.footer {
+    margin-top: 5rem;
+    color: white;
+    background-color: #0085ae;
+    padding-top: 1.5%;
+    padding-bottom: 1.5%;
+}
+
+.footer a {
+    color: white;
+    text-decoration: none;
+}

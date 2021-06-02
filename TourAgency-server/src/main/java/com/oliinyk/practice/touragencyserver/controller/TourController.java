@@ -26,7 +26,7 @@ public class TourController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Tour>> getCountries() {
+    public ResponseEntity<List<Tour>> getTours() {
         return new ResponseEntity<>(tourRepository.findAll(), HttpStatus.OK);
     }
 

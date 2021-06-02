@@ -26,7 +26,7 @@ public class ImageController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Image>> getCountries() {
+    public ResponseEntity<List<Image>> getImages() {
         return new ResponseEntity<>(imageRepository.findAll(), HttpStatus.OK);
     }
 
