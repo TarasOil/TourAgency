@@ -14,7 +14,6 @@ import javax.persistence.*;
 import java.awt.*;
 import java.util.List;
 
-@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -47,6 +46,10 @@ public class Hotel {
     @Hidden
     @OneToMany(mappedBy = "hotel")
     private List<Image> images;
+
+    @Hidden
+    @OneToMany(mappedBy = "hotel")
+    private List<Service> services;
 
     public Hotel(String name, int starCategory, City city) {
         this.name = name;

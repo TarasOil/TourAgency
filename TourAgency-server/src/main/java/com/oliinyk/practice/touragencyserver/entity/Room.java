@@ -20,6 +20,7 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
     @ManyToOne
     @JoinColumn(name = "hotel_id", nullable = false)
     private Hotel hotel;
@@ -28,13 +29,13 @@ public class Room {
     @JoinColumn(name = "room_type_id", nullable = false)
     private RoomType roomType;
 
-    @Column(name = "price_per_adult", scale = 7, precision = 2, nullable = false)
-    private Double pricePerAdult;
+    @Column(name = "price_per_adult", nullable = false)
+    private int pricePerAdult;
 
-    @Column(name = "price_per_child", scale = 7, precision = 2, nullable = false)
-    private Double pricePerChild;
+    @Column(name = "price_per_child", nullable = false)
+    private int pricePerChild;
 
-    public Room(Hotel hotel, RoomType roomType, Double pricePerAdult, Double pricePerChild) {
+    public Room(Hotel hotel, RoomType roomType, int pricePerAdult, int pricePerChild) {
         this.hotel = hotel;
         this.roomType = roomType;
         this.pricePerAdult = pricePerAdult;

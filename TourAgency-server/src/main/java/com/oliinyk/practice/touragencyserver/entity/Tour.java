@@ -21,12 +21,16 @@ public class Tour {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
     @ManyToOne
     @JoinColumn(name = "hotel_id", nullable = false)
     private Hotel hotel;
 
     @Column(name = "nights", columnDefinition = "TINYINT", nullable = false)
     private int nights;
+
+    @Column(name = "base_price", nullable = false)
+    private int basePrice;
 
     @ManyToOne
     @JoinColumn(name = "city_id", nullable = false)
@@ -43,9 +47,10 @@ public class Tour {
     @JoinColumn(name = "feeding_type_id", nullable = false)
     private FeedingType feedingType;
 
-    public Tour(Hotel hotel, int nights, City departureCity, Date departureDate, RoomType roomType, FeedingType feedingType) {
+    public Tour(Hotel hotel, int nights, int basePrice, City departureCity, Date departureDate, RoomType roomType, FeedingType feedingType) {
         this.hotel = hotel;
         this.nights = nights;
+        this.basePrice = basePrice;
         this.departureCity = departureCity;
         this.departureDate = departureDate;
         this.roomType = roomType;
