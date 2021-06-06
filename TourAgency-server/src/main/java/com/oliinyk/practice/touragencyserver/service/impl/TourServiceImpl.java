@@ -66,8 +66,9 @@ public class TourServiceImpl implements TourService {
                 TourResponse tourResponse = new TourResponse(tour);
                 Room room = roomRepository.findByHotelAndRoomType(tour.getHotel(), tour.getRoomType()).get();
                 Feeding feeding = feedingRepository.findByHotelAndFeedingType(tour.getHotel(), tour.getFeedingType()).get();
-                tourResponse.setPrice((int)Math.ceil(tour.getBasePrice() + adults*(room.getPricePerAdult()+feeding.getPricePerAdult())
-                        + children*(room.getPricePerChild()+feeding.getPricePerChild())));
+                tourResponse.setPrice((int)Math.ceil(tour.getBasePrice()
+                        + adults*(room.getPricePerAdult()*tour.getNights()+feeding.getPricePerAdult()*tour.getNights())
+                        + children*(room.getPricePerChild()*tour.getNights()+feeding.getPricePerChild()*tour.getNights())));
                 tourResponses.add(tourResponse);
             }
         }

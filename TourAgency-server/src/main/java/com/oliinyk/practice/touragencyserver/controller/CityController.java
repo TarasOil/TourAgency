@@ -30,6 +30,11 @@ public class CityController {
         return new ResponseEntity<>(cityRepository.findAll(), HttpStatus.OK);
     }
 
+    @GetMapping("/country")
+    public ResponseEntity<List<City>> getCitiesByCountryName(@RequestParam("name") String name) {
+        return new ResponseEntity<>(cityRepository.findByCountryName(name), HttpStatus.OK);
+    }
+
     @GetMapping("/{cityId}")
     public ResponseEntity<City> getCityById(@PathVariable("cityId") int id) {
         Optional<City> city = cityRepository.findById(id);

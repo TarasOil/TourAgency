@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link href="css/top-bar.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
+    <link rel="icon" href="img/icon.png">
     <title>TourAgency</title>
 </head>
 <body>
@@ -64,7 +65,87 @@
     <div class="container">
         <div class="row">
             <div class="col-12 search">
-                
+                <form class="row" id="search-form">
+                    <div class="col-3">
+                        <p>Куди</p>
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="form-name" placeholder="Назва країни, міста, готелю">
+                            <label for="form-name">Назва країни, міста, готелю</label>
+                        </div>
+                    </div>
+                    <div class="col-1">
+                        <p>Ночей від</p>
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="form-nights-from" placeholder="Від ...">
+                            <label for="form-nights-from">Від ...</label>
+                        </div>
+                    </div>
+                    <div class="col-1">
+                        <p>до</p>
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="form-nights-to" placeholder="До ...">
+                            <label for="form-nights-to">До ...</label>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <p>Виліт від</p>
+                        <div>
+                            <input type="date" class="form-control" id="form-date-from" style="min-height: 3.6rem;">
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <p>до</p>
+                        <div>
+                            <input type="date" class="form-control" id="form-date-to" style="min-height: 3.6rem;">
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <button type="submit" class="btn btn-warning" id="search-button">Пошук</button>
+                        <!-- <button type="submit" class="btn btn-warning" id="search-button" data-bs-toggle="modal" data-bs-target="#tours-modal">Пошук</button> -->
+                    </div>
+                    <div class="col-3">
+                        <p>Виліт з</p>
+                        <div>
+                            <select class="form-select" id="form-city">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <p>Дорослих</p>
+                        <div>
+                            <input type="number" class="form-control" id="form-adults" min="1" max="3" value="1" placeholder="Дорослих">
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <p>Дітей</p>
+                        <div>
+                            <input type="number" class="form-control" id="form-children" min="0" max="3" value="0" placeholder="Дітей">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="tours-modal">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Знайдені тури</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="justify-content-center" id="spinner">
+                        <div class="spinner-border" role="status">
+                          <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                    <div class="container" id="tour-list">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрити</button>
+                </div>
             </div>
         </div>
     </div>
@@ -87,6 +168,8 @@
     </footer>
 
     <script src="js/globals.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
