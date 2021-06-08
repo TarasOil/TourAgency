@@ -22,18 +22,12 @@ public class Service {
     @Column(length = 30, unique = true, nullable = false)
     private String name;
 
-    @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
-    @ManyToOne
-    @JoinColumn(name = "hotel_id", nullable = false)
-    private Hotel hotel;
-
     @ManyToOne
     @JoinColumn(name = "service_type_id", nullable = false)
     private ServiceType serviceType;
 
     public Service(String name, Hotel hotel, ServiceType serviceType) {
         this.name = name;
-        this.hotel = hotel;
         this.serviceType = serviceType;
     }
 }
