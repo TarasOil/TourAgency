@@ -11,15 +11,14 @@
     <title>TourAgency</title>
 </head>
 <body>
+    
     <nav class="navbar fixed-top navbar-light navig">
         <a id="title" href="index.html">TourAgency</a>
-
-        <a id="admin-panel" href="$">Admin Panel</a>
-
+        <!-- <a id="admin-panel" href="$">Admin Panel</a> -->
     </nav>
 
-    <div id="sunset" style="height: 60vh;">
-        <span id="sunset-text">Lorem ipsum</span>
+    <div class="d-flex justify-content-center align-items-center" id="sunset">
+        <p id="sunset-text">Lorem ipsum</p>
     </div>
 
     <div class="container-fluid">
@@ -69,34 +68,34 @@
                     <div class="col-3">
                         <p>Куди</p>
                         <div class="form-floating">
-                            <input type="text" class="form-control" id="form-name" placeholder="Назва країни, міста, готелю">
+                            <input type="text" class="form-control" id="form-name" required placeholder="Назва країни, міста, готелю">
                             <label for="form-name">Назва країни, міста, готелю</label>
                         </div>
                     </div>
                     <div class="col-1">
                         <p>Ночей від</p>
                         <div class="form-floating">
-                            <input type="text" class="form-control" id="form-nights-from" placeholder="Від ...">
+                            <input type="text" class="form-control" id="form-nights-from" required placeholder="Від ...">
                             <label for="form-nights-from">Від ...</label>
                         </div>
                     </div>
                     <div class="col-1">
                         <p>до</p>
                         <div class="form-floating">
-                            <input type="text" class="form-control" id="form-nights-to" placeholder="До ...">
+                            <input type="text" class="form-control" id="form-nights-to" required placeholder="До ...">
                             <label for="form-nights-to">До ...</label>
                         </div>
                     </div>
                     <div class="col-2">
                         <p>Виліт від</p>
                         <div>
-                            <input type="date" class="form-control" id="form-date-from" style="min-height: 3.6rem;">
+                            <input type="date" class="form-control" id="form-date-from" required style="min-height: 3.6rem;">
                         </div>
                     </div>
                     <div class="col-2">
                         <p>до</p>
                         <div>
-                            <input type="date" class="form-control" id="form-date-to" style="min-height: 3.6rem;">
+                            <input type="date" class="form-control" id="form-date-to" required style="min-height: 3.6rem;">
                         </div>
                     </div>
                     <div class="col-3">
@@ -150,6 +149,29 @@
         </div>
     </div>
 
+    <div class="modal fade" id="hotel-modal">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Про готель</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- <div class="justify-content-center" id="spinner">
+                        <div class="spinner-border" role="status">
+                          <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div> -->
+                    <div class="container-fluid" id="hotel-info-container">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="hotel-modal-button">Повернутись</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container-fluid">
         <div class="row beach-wrapper">
             <div class="col-4 beach" style="background-image: url(img/beach1.jpg);">
@@ -163,7 +185,7 @@
 
     <footer class="footer">
         <div class="footer-copyright text-center">© 2021 Copyright:
-            <a href="index.html">TourAgency.com</a>
+            <a href="index.html">TourAgency</a>
         </div>
     </footer>
 
