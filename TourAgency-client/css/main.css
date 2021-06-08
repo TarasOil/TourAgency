@@ -1,14 +1,17 @@
 #sunset {
-    height: 60vh;
     background-image: url(../img/sunset.jpg);
     background-size: cover;
 }
 
 #sunset-text {
-    margin-top: 2rem;
     font-family: Oleo, Helvetica, sans-serif;
     font-size: 5rem;
     color: black;
+    /* -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black; */
+    position: relative; 
+    top: 45%;
+    left: 37%;
 }
 
 .pros {
@@ -82,14 +85,9 @@
     display: flex;
 }
 
-#tour-list {
-    padding-top: 1rem;
-}
-
 .tour-list-item {
     background-color: white;
     height: max-content;
-    margin-bottom: 1rem;
 }
 
 .tour-list-img {
@@ -147,47 +145,6 @@
 .tour-list-button {
     border-radius: 0;
     width: 100%;
-}
-
-#hotel-modal-name-wrapper {
-    height: 60vh;
-    background-size: cover;
-}
-
-#hotel-modal-name {
-    color: white;
-    font-size: 3rem;
-}
-
-#hotel-modal-location {
-    color: white;
-    font-size: 2rem;
-}
-
-#hotel-modal-service-wrapper {
-    background-color: white;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    padding: 1rem 0 1rem 2rem;
-}
-
-.hotel-modal-service-type-wrapper {
-    margin-bottom: 0.5rem;
-}
-
-.hotel-modal-service-type-name {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-}
-
-.hotel-modal-service-name {
-    margin-bottom: 0;
-}
-
-#hotel-modal-image-wrapper {
-    background-color: white;
-    padding: 1rem 0 1rem 0;
 }
 
 .beach-wrapper {

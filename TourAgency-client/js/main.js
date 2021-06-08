@@ -1,13 +1,13 @@
 $(document).ready(function() {
     
     $.ajax({
-        url: serverUrl + "city/country?name=Україна",
-        method: "GET",
-        dataType: "json",
-        contentType: "application/json",
+        url: serverUrl + 'city/country?name=Україна',
+        method: 'GET',
+        dataType: 'json',
+        contentType: 'application/json',
         success: function(response) {
             $.each(response, function(key, value) {
-                $("#form-city").append(
+                $('#form-city').append(
                     `
                     <option value="${value.name}">${value.name}</option>
                     `
@@ -31,34 +31,16 @@ $(document).ready(function() {
         }
     });
 
-    let toursModal = new bootstrap.Modal($("#tours-modal"));
-    let hotelModal = new bootstrap.Modal($("#hotel-modal"));
+    let modal = new bootstrap.Modal($("#tours-modal"));
 
-    $("#hotel-modal-button").on("click", function() {
-        hotelModal.hide();
-        toursModal.show();
-    });
-
-    let serviceTypeArr;
-
-    $.ajax({
-        url: serverUrl + `service_type`,
-        method: "GET",
-        dataType: "json",
-        contentType: "application/json",
-        success: function(response) {
-            serviceTypeArr = response;
-        }
-    });
-
-    $("#search-form").submit(function(e) {
+    $('#search-form').submit(function(e) {
         e.preventDefault();
 
         $("#tour-list").hide();
         $("#tour-list").html("");
         $("#spinner").show();
 
-        toursModal.show();
+        modal.show();
 
         let name = $("#form-name")[0].value;
         let nightsFrom = $("#form-nights-from")[0].value;
@@ -71,14 +53,15 @@ $(document).ready(function() {
 
         $.ajax({
             url: serverUrl + `tour/prices?name=${name}&nightsFrom=${nightsFrom}&nightsTo=${nightsTo}&dateFrom=${dateFrom}&dateTo=${dateTo}&city=${city}&adults=${adults}&children=${children}`,
-            method: "GET",
-            dataType: "json",
-            contentType: "application/json",
+            method: 'GET',
+            dataType: 'json',
+            contentType: 'application/json',
             success: function(response) {
+                console.log(response.length);
                 if(response.length > 0) {
                     $.each(response, function(key, value) {
                         let date = new Date(value.departureDate);
-                        $("#tour-list").append(
+                        $('#tour-list').append(
                             `
                             <div class="row tour-list-item">
                                 <div class="col-4 tour-list-img" style="background-image: url(${value.hotel.images[0].imageUrl});">
@@ -95,114 +78,21 @@ $(document).ready(function() {
                                         <p class="tour-list-price">${value.price}$</p>
                                         <p class="tour-list-people">за ${people(adults, children)}</p>
                                     </div>
-                                    <button class="btn btn-warning tour-list-button" id="tour-button-${key}">Готель</button>
+                                    <button class="btn btn-warning tour-list-button">Готель</button>
                                 </div>
                             </div>
                             `
                         );
-                    });
-
-                    $(".tour-list-button").on("click", function(e) {
-                        let index = e.target.id.split("-")[2];
-                        let hotel = response[index].hotel;
-
-                        $("#hotel-info-container").html("");
-                        $("#hotel-info-container").append(
-                            `
-                            <div class="row">
-                                <div class="col-12 d-flex justify-content-center align-items-center" id="hotel-modal-name-wrapper" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${hotel.images[0].imageUrl});">
-                                    <div class="text-center">
-                                        <p id="hotel-modal-name">${hotel.name}</p>
-                                        <p id="hotel-modal-location">${hotel.city.name}, ${hotel.city.country.name}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row" id="hotel-modal-service-wrapper">
-                            </div>
-                            <div class="row" id="hotel-modal-image-wrapper">
-                                <div id="hotel-carousel" class="carousel slide col-12" data-ride="carousel">
-                                    <div id="carousel-item-wrapper" class="carousel-inner">
-                                        <div class="carousel-item active">
-                                            <img class="d-block w-100" src="${hotel.images[0].imageUrl}" alt="${index+1} slide">
-                                        </div>
-                                    </div>
-                                    <button class="carousel-control-prev" type="button" data-bs-target="#hotel-carousel" data-bs-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Previous</span>
-                                    </button>
-                                    <button class="carousel-control-next" type="button" data-bs-target="#hotel-carousel" data-bs-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Next</span>
-                                    </button>
-                                </div>
-                            </div>
-                            `
-                        );
-
-                        $.each(hotel.images, function(i, v){
-                            if(i == 0) {
-                                return true;
-                            }
-                            
-                            $("#carousel-item-wrapper").append(
-                                `
-                                <div class="carousel-item">
-                                    <img class="d-block w-100" src="${v.imageUrl}" alt="${i+1} slide">
-                                </div>
-                                `
-                            );
-                        });
-
-                        $.each(serviceTypeArr.sort(compare), function(index, value) {
-                            $("#hotel-modal-service-wrapper").append(
-                                `
-                                <div class="col-4 hotel-modal-service-type-wrapper">
-                                    <p class="hotel-modal-service-type-name">${value.name}</p>
-                                    <div id="hotel-modal-service-type-${value.id}">
-                                `);
-
-                            $.each(hotel.services, function(i, v) {
-                                if(v.service.serviceType.name.localeCompare(value.name) == 0){
-                                    $("#hotel-modal-service-type-" + value.id).append(
-                                        `
-                                        <p class="hotel-modal-service-name">${v.service.name}</p>
-                                        `
-                                    );
-                                };
-                            });
-
-                            $("#hotel-modal-service-wrapper").append(
-                                `
-                                    </div>
-                                </div>
-                                `
-                            );
-                        });
-
-                        toursModal.hide();
-                        hotelModal.show();
                     });
                 } else {
-                    $("#tour-list").append(
-                        `
-                        <div class="d-flex justify-content-center">
-                            <p>Не знайдено турів за запитом</p>
-                        </div>
-                        `
-                    );
+
                 }
 
                 $("#spinner").hide();
                 $("#tour-list").show();
             },
             error: function(response) {
-                $("#tour-list").append(
-                    `
-                    <div class="d-flex justify-content-center">
-                        <p>Помилка при надсиланні запиту</p>
-                    </div>
-                    `
-                );
+
             }
         });
         
@@ -239,14 +129,4 @@ function people(adults, children) {
     }
 
     return s;
-}
-
-function compare(a, b) {
-    if (a.id < b.id){
-      return -1;
-    }
-    if ( a.id > b.id ){
-      return 1;
-    }
-    return 0;
 }
