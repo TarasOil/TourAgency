@@ -1,5 +1,6 @@
 package com.oliinyk.practice.touragencyserver.service.impl;
 
+import com.oliinyk.practice.touragencyserver.entity.Country;
 import com.oliinyk.practice.touragencyserver.entity.Feeding;
 import com.oliinyk.practice.touragencyserver.entity.Room;
 import com.oliinyk.practice.touragencyserver.entity.Tour;
@@ -47,6 +48,7 @@ public class TourServiceImpl implements TourService {
     public List<TourResponse> findAllWithPrices(String name, int nightsFrom, int nightsTo, Date dateFrom, Date dateTo, String city, int adults, int children) {
         List<Tour> tours = null;
         if(countryRepository.existsByNameContains(name)) {
+            Country country = countryRepository.findByNameContains(name).get();
             tours = tourRepository.findAllByHotelCityCountryAndNightsBetweenAndDepartureDateBetweenAndDepartureCity(
                     countryRepository.findByNameContains(name).get(), nightsFrom, nightsTo, dateFrom, dateTo,
                     cityRepository.findByNameContains(city).get());

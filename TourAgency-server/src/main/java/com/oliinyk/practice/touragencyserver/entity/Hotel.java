@@ -49,7 +49,7 @@ public class Hotel {
 
     @Hidden
     @OneToMany(mappedBy = "hotel")
-    private List<Service> services;
+    private List<HotelService> services;
 
     public Hotel(String name, int starCategory, City city) {
         this.name = name;
